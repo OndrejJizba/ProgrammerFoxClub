@@ -1,5 +1,6 @@
 package com.gfa.programmerfoxclub.controllers;
 
+import com.gfa.programmerfoxclub.models.Food;
 import com.gfa.programmerfoxclub.models.Fox;
 import com.gfa.programmerfoxclub.services.FoxService;
 import org.springframework.beans.factory.annotation.Autowired;

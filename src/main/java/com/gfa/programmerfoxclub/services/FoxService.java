@@ -1,25 +1,33 @@
 package com.gfa.programmerfoxclub.services;
 
 import com.gfa.programmerfoxclub.models.Fox;
+import com.gfa.programmerfoxclub.repositories.FoxRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class FoxService {
-    private List<Fox> foxList;
+    private final FoxRepository foxRepository;
 
-    public FoxService() {
-        this.foxList = new ArrayList<>();
+
+    @Autowired
+    public FoxService(FoxRepository foxRepository) {
+        this.foxRepository = foxRepository;
     }
 
-    public void addFox (Fox fox) {
-        foxList.add(fox);
-    }
+        public void addFox (Fox fox){
+            foxRepository.add(fox);
+        }
 
-    public Fox findByName (String name) {
-        return foxList.stream().filter(fox -> fox.getName().equals(name))
-                .findFirst().orElse(null);
+        public Fox findByName (String name){
+            return foxRepository.getListOfFoxes().stream().filter(fox -> fox.getName().equals(name))
+                    .findFirst().orElse(null);
+        }
+
+        public List<Fox> getFoxList(){
+            return foxRepository.getListOfFoxes();
+        }
     }
-}
