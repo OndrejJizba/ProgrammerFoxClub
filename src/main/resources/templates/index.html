@@ -7,8 +7,7 @@
 <body>
     <header th:replace="~{fragments/navigation :: navigation}"></header>
     <img src="/images/greenfox.png"/>
-    <p th:text="'Name ' + ${foxName}"></p>
-    <p th:text="'This is ' + ${foxName} + '. Currently living on pizza and lemonade. He knows 2 tricks.'"></p>
+    <p th:text="'This is ' + ${foxName} + '. Currently living on ' + ${food} + ' and ' + ${drink} + '. He knows 2 tricks.'"></p>
     <h1>Known tricks</h1>
     <ul>
         <li>something</li>

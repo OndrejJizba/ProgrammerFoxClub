@@ -2,6 +2,7 @@ package com.gfa.programmerfoxclub.controllers;
 
 import com.gfa.programmerfoxclub.models.Food;
 import com.gfa.programmerfoxclub.models.Fox;
+import com.gfa.programmerfoxclub.services.FoodAndDrinkService;
 import com.gfa.programmerfoxclub.services.FoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +15,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     private FoxService foxService;
+    private FoodAndDrinkService foodAndDrinkService;
 
     @Autowired
-    public MainController(FoxService foxService) {
+    public MainController(FoxService foxService, FoodAndDrinkService foodAndDrinkService) {
         this.foxService = foxService;
+        this.foodAndDrinkService = foodAndDrinkService;
     }
 
     @GetMapping("/")
-    public String getMainPage(@RequestParam (required = false) String name, Model model){
-        model.addAttribute("foxName", name);
+    public String getMainPage(@RequestParam (required = false) String name, @RequestParam (required = false) String food, @RequestParam (required = false) String drink, Model model){
+        model.addAttribute("foxName", foxService.getCurrentFox());
+        model.addAttribute("food", foodAndDrinkService.getCurrentFood());
+        model.addAttribute("drink", foodAndDrinkService.getCurrentDrink());
         return "index";
     }
 
@@ -33,8 +38,7 @@ public class MainController {
 
     @PostMapping("/login")
     public String login(@RequestParam String name){
-        foxService.addFox(new Fox(name));
-        Fox foundFox = foxService.findByName(name);
-        return "redirect:/?name=" + foundFox.getName();
+        foxService.setCurrentFox(name);
+        return "redirect:/?name=" + name;
     }
 }

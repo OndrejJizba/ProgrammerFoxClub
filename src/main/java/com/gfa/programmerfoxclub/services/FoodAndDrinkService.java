@@ -32,15 +32,17 @@ public class FoodAndDrinkService {
         currentFood = new Food(food);
     }
 
-    public Food getCurrentFood(){
-        return currentFood;
+    public String getCurrentFood(){
+        if (currentFood == null) return new Food("carrot").getFoodName();
+        else return currentFood.getFoodName();
     }
 
     public void setCurrentDrink(String drink){
         currentDrink = new Drink(drink);
     }
 
-    public Drink getCurrentDrink(){
-        return currentDrink;
+    public String getCurrentDrink(){
+        if (currentDrink == null) return new Drink("cola").getDrinkName();
+        else return currentDrink.getDrinkName();
     }
 }

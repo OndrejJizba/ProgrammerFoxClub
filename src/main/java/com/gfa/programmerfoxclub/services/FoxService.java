@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class FoxService {
     private final FoxRepository foxRepository;
+    private Fox currentFox;
 
 
     @Autowired
@@ -29,5 +30,14 @@ public class FoxService {
 
         public List<Fox> getFoxList(){
             return foxRepository.getListOfFoxes();
+        }
+
+        public void setCurrentFox(String name){
+            currentFox = new Fox(name);
+        }
+
+        public String getCurrentFox(){
+            if (currentFox == null) return "fox without a name";
+            else return currentFox.getName();
         }
     }

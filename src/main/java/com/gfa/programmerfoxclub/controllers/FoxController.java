@@ -32,6 +32,7 @@ public class FoxController {
     public String setNutrition(@RequestParam String food, @RequestParam String drink){
         foodAndDrinkService.setCurrentFood(food);
         foodAndDrinkService.setCurrentDrink(drink);
-        return "redirect:/?food=" + food + "&drink=" + drink;
+        String currentFox = foxService.getCurrentFox();
+        return "redirect:/?food=" + food + "&drink=" + drink + "&name=" + currentFox;
     }
 }
