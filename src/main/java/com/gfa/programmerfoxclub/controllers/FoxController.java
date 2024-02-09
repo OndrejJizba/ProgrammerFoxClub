@@ -37,7 +37,7 @@ public class FoxController {
         foodAndDrinkService.setCurrentFood(food);
         foodAndDrinkService.setCurrentDrink(drink);
         String currentFox = foxService.getCurrentFox();
-        return "redirect:/?food=" + food + "&drink=" + drink + "&name=" + currentFox;
+        return "redirect:/?name=" + currentFox;
     }
 
     @GetMapping("/trickCenter")
@@ -48,7 +48,8 @@ public class FoxController {
 
     @PostMapping("/trickCenter")
     public String setTrick(@RequestParam String trick){
-        trickService.setCurrentTrick(trick);
-        return "redirect:/";
+        trickService.addTrickToLearnt(trick);
+        String currentFox = foxService.getCurrentFox();
+        return "redirect:/?name=" + currentFox;
     }
 }

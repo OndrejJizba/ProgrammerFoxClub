@@ -7,10 +7,10 @@
 <body>
     <header th:replace="~{fragments/navigation :: navigation}"></header>
     <img src="/images/greenfox.png"/>
-    <p th:text="'This is ' + ${foxName} + '. Currently living on ' + ${food} + ' and ' + ${drink} + '. He knows 2 tricks.'"></p>
+    <p th:text="'This is ' + ${foxName} + '. Currently living on ' + ${food} + ' and ' + ${drink} + '. He knows ' + ${numberOfTricks} + ' tricks.'"></p>
     <h1>Known tricks</h1>
-    <ul>
-        <li>something</li>
+    <ul th:each="trick : ${learntTricks}">
+        <li th:text="${trick.trickName}"></li>
     </ul>
 </body>
 </html>

@@ -10,9 +10,11 @@ import java.util.List;
 public class TrickRepository {
 
     private List<Trick> trickList;
+    private List<Trick> learntTricks;
 
     public TrickRepository(){
         this.trickList = new ArrayList<>();
+        this.learntTricks = new ArrayList<>();
         trickList.add(new Trick("write HTML"));
         trickList.add(new Trick("learn CSS"));
         trickList.add(new Trick("master Java"));
@@ -20,5 +22,9 @@ public class TrickRepository {
 
     public List<Trick> getTrickList(){
         return trickList;
+    }
+
+    public List<Trick> getLearntTricksList(){
+        return learntTricks;
     }
 }

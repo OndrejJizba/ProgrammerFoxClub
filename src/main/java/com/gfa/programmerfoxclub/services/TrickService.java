@@ -21,8 +21,15 @@ public class TrickService {
         return trickRepository.getTrickList();
     }
 
-    public void setCurrentTrick(String trick){
-        currentTrick = new Trick(trick);
+    public void addTrickToLearnt (String trick){
+        trickRepository.getLearntTricksList().add(new Trick(trick));
+    }
 
+    public List<Trick> getListOfLearntTricks(){
+        return trickRepository.getLearntTricksList();
+    }
+
+    public int getNumberOfTricks(){
+        return trickRepository.getLearntTricksList().size();
     }
 }
