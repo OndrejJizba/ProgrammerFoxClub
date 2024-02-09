@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="~{fragments/navigation :: navigation}"></header>
+<div th:each="action : ${actionList}" th:if="${action.type == 'food'}">
+    <span th:text="${action.time} + ' --- Food has been changed to ' + ${action.item}"></span>
+</div>
+<div th:each="action : ${actionList}" th:if="${action.type == 'drink'}">
+    <span th:text="${action.time} + ' --- Drink has been changed to ' + ${action.item}"></span>
+</div>
+<div th:each="action : ${actionList}" th:if="${action.type == 'trick'}">
+    <span th:text="${action.time} + ' --- Learned to ' + ${action.item}"></span>
+</div>
+</body>
+</html>
