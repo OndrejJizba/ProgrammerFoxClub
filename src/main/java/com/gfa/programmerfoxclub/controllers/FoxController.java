@@ -43,6 +43,7 @@ public class FoxController {
     @GetMapping("/trickCenter")
     public String getTrickCenter(Model model){
         model.addAttribute("trickList", trickService.getTrickList());
+        model.addAttribute("listOfNotLearntTrick", trickService.getTrickList());
         return "tricks";
     }
 

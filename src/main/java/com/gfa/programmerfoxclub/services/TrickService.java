@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TrickService {
@@ -22,7 +23,13 @@ public class TrickService {
     }
 
     public void addTrickToLearnt (String trick){
-        trickRepository.getLearntTricksList().add(new Trick(trick));
+        currentTrick = new Trick(trick);
+        trickRepository.getLearntTricksList().add(currentTrick);
+        for (int i = 0; i < getTrickList().size(); i++) {
+            if (Objects.equals(currentTrick.getTrickName(), getTrickList().get(i).getTrickName())) {
+                getTrickList().remove(i);
+            }
+        }
     }
 
     public List<Trick> getListOfLearntTricks(){

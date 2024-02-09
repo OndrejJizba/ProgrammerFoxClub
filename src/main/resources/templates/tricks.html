@@ -6,12 +6,13 @@
 </head>
 <body>
 <header th:replace="~{fragments/navigation :: navigation}"></header>
-<form action="trickCenter" method="post">
+<form th:if="${not #lists.isEmpty(listOfNotLearntTrick)}" action="trickCenter" method="post">
   <label for="trick">Tricks</label>
   <select name="trick" id="trick">
     <option th:each="trick : ${trickList}" th:value="${trick.trickName}" th:text="${trick.trickName}"></option>
   </select>
   <button type="submit">Learn</button>
 </form>
+<span th:if="${#lists.isEmpty(listOfNotLearntTrick)}">There is nothing to learn!</span>
 </body>
 </html>
