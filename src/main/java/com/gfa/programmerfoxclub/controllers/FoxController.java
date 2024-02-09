@@ -2,6 +2,7 @@ package com.gfa.programmerfoxclub.controllers;
 
 import com.gfa.programmerfoxclub.services.FoodAndDrinkService;
 import com.gfa.programmerfoxclub.services.FoxService;
+import com.gfa.programmerfoxclub.services.TrickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,13 @@ public class FoxController {
     private FoodAndDrinkService foodAndDrinkService;
     private FoxService foxService;
 
+    private TrickService trickService;
+
     @Autowired
-    public FoxController(FoodAndDrinkService foodAndDrinkService, FoxService foxService){
+    public FoxController(FoodAndDrinkService foodAndDrinkService, FoxService foxService, TrickService trickService){
         this.foodAndDrinkService = foodAndDrinkService;
         this.foxService = foxService;
+        this.trickService = trickService;
     }
 
     @GetMapping("/nutritionStore")
@@ -34,5 +38,17 @@ public class FoxController {
         foodAndDrinkService.setCurrentDrink(drink);
         String currentFox = foxService.getCurrentFox();
         return "redirect:/?food=" + food + "&drink=" + drink + "&name=" + currentFox;
+    }
+
+    @GetMapping("/trickCenter")
+    public String getTrickCenter(Model model){
+        model.addAttribute("trickList", trickService.getTrickList());
+        return "tricks";
+    }
+
+    @PostMapping("/trickCenter")
+    public String setTrick(@RequestParam String trick){
+        trickService.setCurrentTrick(trick);
+        return "redirect:/";
     }
 }
