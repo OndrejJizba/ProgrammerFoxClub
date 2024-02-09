@@ -2,7 +2,6 @@ package com.gfa.programmerfoxclub.services;
 
 import com.gfa.programmerfoxclub.models.Drink;
 import com.gfa.programmerfoxclub.models.Food;
-import com.gfa.programmerfoxclub.models.Fox;
 import com.gfa.programmerfoxclub.repositories.FoodAndDrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
